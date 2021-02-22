@@ -1,61 +1,13 @@
 
-import time
-import requests
-from requests import HTTPError
-from settings import CONFIG
-from tools import check_channel
+from corpus import VisionDialog, CONFIG
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
 
-@check_channel
-def start(update, context):
-    """Send a message when the command /start is issued."""
-    update.message.reply_text("Je suis Vision, pour vous servir.")
-
-
-def schedule_vision(context):
-    try:
-        r = requests.get(CONFIG.DOMAINE + '/vision')
-        data = r.json()
-        if data['waiting'] > 10:
-            if 'datas' in data.keys():
-                for i in range(len(data['datas'])):
-                    context.bot.send_message(chat_id=CONFIG.TDV_CHAIN_ID, text=data['datas'][i]['url'])
-                    if i % 5 == 0:
-                        time.sleep(5)
-
-    except HTTPError as h:
-        context.bot.send_message(chat_id=CONFIG.ADMIN_ID,
-                                 text="" + h.response)
+vision_corpus = VisionDialog()
 
 
 def callback_hour_vision(context: CallbackContext):
-    schedule_vision(context)
-
-
-def schedule_engine(context):
-    try:
-        r = requests.get(CONFIG.DOMAINE + '/engine')
-        data = r.json()
-        if 'validates' in data.keys():
-            context.bot.send_message(chat_id=CONFIG.ADMIN_ID,
-                                     text="engine effectué.")
-
-    except HTTPError as h:
-        context.bot.send_message(chat_id=CONFIG.ADMIN_ID,
-                                 text="" + h.response)
-
-
-def callback_hour_engine(context: CallbackContext):
-    schedule_engine(context)
-
-
-# Conversation
-# @check_channel
-def answer(update, context):
-    """Echo the user message."""
-    r = requests.get('https://baconipsum.com/api/?type=all-meat&sentences=1').json()
-    update.message.reply_text(r[0])
+    vision_corpus.schedule_vision(context)
 
 
 def main():
@@ -67,11 +19,14 @@ def main():
     dp = updater.dispatcher
 
     # on different commands - answer in Telegram
-    dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(MessageHandler(Filters.text, answer))
+    dp.add_handler(CommandHandler("start", vision_corpus.start))
+    dp.add_handler(CommandHandler("engine_words", vision_corpus.get_engine))
+    dp.add_handler(CommandHandler("add_words", vision_corpus.post_engine))
+    dp.add_handler(CommandHandler("articles", vision_corpus.get_articles))
+    dp.add_handler(CommandHandler("search", vision_corpus.search))
+    dp.add_handler(MessageHandler(Filters.text, vision_corpus.answer))
 
-    job_hour = jb.run_repeating(callback_hour_engine, interval=60, first=20)
-    job_hour = jb.run_repeating(callback_hour_vision, interval=30, first=10)
+    job_hour = jb.run_repeating(callback_hour_vision, interval=CONFIG.ENGINE_INTERVAL, first=CONFIG.ENGINE_FIRST)
 
     # log all errors
     # dp.add_error_handler(error)
