@@ -4,7 +4,7 @@ class Configuration:
         self.mode = 'prod'
 
     # NETWORK
-    DOMAINE = 'http://172.17.0.1:7111/tdv'
+    DOMAINE = 'http://tdv.spacink.xyz/tdv'
 
     # TELEGRAM
     BOT_KEY = '1432368134:AAGgRwPesrfBSPZge8hBK2RrcTHnZyuD33A'
@@ -14,7 +14,7 @@ class Configuration:
     # MECHANICS
     SENDER_SLEEP = 5
     ENGINE_FIRST = 60
-    ENGINE_INTERVAL = 3600
+    ENGINE_INTERVAL = 10800
 
 
 class ConfigurationTest:
@@ -22,17 +22,18 @@ class ConfigurationTest:
         self.mode = 'test'
 
     # NETWORK
-    DOMAINE = 'http://localhost:7111/tdv'
+    # DOMAINE = 'http://localhost:7111/tdv'
+    DOMAINE = 'http://tdv.spacink.xyz/tdv'
 
     # TELEGRAM
-    BOT_KEY = '1659088524:AAGf2bp963DKltRB2kythMJ68A1_M5bYwKI'
+    BOT_KEY = '1659088524:AAGf2bp963DKltRB2kythMJ68A1_M5bYwKI'  # VisionT1
     ADMIN_ID = 403915236
-    TDV_CHAIN_ID = -1001292509023
+    TDV_CHAIN_ID = -1001292509023  # TheCosmosNews
 
     # MECHANICS
     SENDER_SLEEP = 1
-    ENGINE_FIRST = 10
-    ENGINE_INTERVAL = 30
+    ENGINE_FIRST = 2
+    ENGINE_INTERVAL = 60
 
 
-CONFIG = Configuration()
+CONFIG = ConfigurationTest()

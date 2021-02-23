@@ -26,6 +26,14 @@ def main():
     dp.add_handler(CommandHandler("search", vision_corpus.search))
     dp.add_handler(MessageHandler(Filters.text, vision_corpus.answer))
 
+    """
+    start - démarrage
+    engine_words - renvoie la liste des mots de l'engine
+    add_words - ajoute une liste de mots à l'engine
+    articles - renvoie tous les articles de la database
+    search - permet d'effectuer une recherche api/db
+    """
+
     job_hour = jb.run_repeating(callback_hour_vision, interval=CONFIG.ENGINE_INTERVAL, first=CONFIG.ENGINE_FIRST)
 
     # log all errors
