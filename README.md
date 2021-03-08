@@ -1,2 +1,2 @@
-# TDV_Telegram
-Interface télégram de -TheDailyVision-
+# Vision
+Bot d'interface télégram de -TheDailyVision-
