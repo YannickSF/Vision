@@ -28,6 +28,13 @@ class VisionDialog:
 
     @staticmethod
     @check_channel
+    def delete_engine(update, context):
+        words = update.message.text.split('/delete_words')
+        for i in words[1].split(','):
+            update.message.reply_text(core_delete_engine(update, word=i.strip()))
+
+    @staticmethod
+    @check_channel
     def get_articles(update, context):
         data = core_get_articles(update)
         for i in range(len(data)):
@@ -38,7 +45,18 @@ class VisionDialog:
     @staticmethod
     @check_channel
     def search(update, context):
-        pass
+        values = update.message.text.split(' ')
+        data = core_search(update, sch_type=values[1], keyword=values[2])
+        if data is not None:
+            if data['data'] is not None:
+                for i in range(len(data)):
+                    update.message.reply_text(text=data['data'][i]['url'])
+                    if i % 5 == 0:
+                        time.sleep(CONFIG.SENDER_SLEEP)
+            else:
+                update.message.reply_text(text=data['data'])
+        else:
+            update.message.reply_text(text='Pas de donnée !')
 
     def schedule_vision(self, context):
         try:

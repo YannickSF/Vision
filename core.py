@@ -16,11 +16,19 @@ def core_post_engine(*args, words):
            + ' | '.join(payload['word_list'])
 
 
+def core_delete_engine(*args, word):
+    r = requests.delete(CONFIG.DOMAINE + '/engine/' + word)
+    retour = r.json()
+    return "Nouvelle liste : " + ' | '.join(retour['list'])
+
+
 def core_get_articles(*args):
     r = requests.get(CONFIG.DOMAINE + '/article')
     data = r.json()
     return data['articles']
 
 
-def core_search():
-    pass
+def core_search(*args, sch_type, keyword):
+    payload = {'type': sch_type, 'keyword': keyword}
+    r = requests.post(CONFIG.DOMAINE + '/search', json=payload)
+    return r.json()

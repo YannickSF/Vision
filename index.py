@@ -22,6 +22,7 @@ def main():
     dp.add_handler(CommandHandler("start", vision_corpus.start))
     dp.add_handler(CommandHandler("engine_words", vision_corpus.get_engine))
     dp.add_handler(CommandHandler("add_words", vision_corpus.post_engine))
+    dp.add_handler(CommandHandler("delete_words", vision_corpus.delete_engine))
     dp.add_handler(CommandHandler("articles", vision_corpus.get_articles))
     dp.add_handler(CommandHandler("search", vision_corpus.search))
     dp.add_handler(MessageHandler(Filters.text, vision_corpus.answer))

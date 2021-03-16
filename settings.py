@@ -22,8 +22,7 @@ class ConfigurationTest:
         self.mode = 'test'
 
     # NETWORK
-    # DOMAINE = 'http://localhost:7111/tdv'
-    DOMAINE = 'http://tdv.spacink.xyz/tdv'
+    DOMAINE = 'http://localhost:7111/tdv'
 
     # TELEGRAM
     BOT_KEY = '1659088524:AAGf2bp963DKltRB2kythMJ68A1_M5bYwKI'  # VisionT1
@@ -32,8 +31,8 @@ class ConfigurationTest:
 
     # MECHANICS
     SENDER_SLEEP = 1
-    ENGINE_FIRST = 2
-    ENGINE_INTERVAL = 60
+    ENGINE_FIRST = 3600
+    ENGINE_INTERVAL = 3600
 
 
 CONFIG = ConfigurationTest()
