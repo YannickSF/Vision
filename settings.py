@@ -1,38 +1,52 @@
 
 class Configuration:
-    def __init__(self):
-        self.mode = 'prod'
-
-    # NETWORK
-    DOMAINE = 'http://tdv.spacink.xyz/tdv'
-
     # TELEGRAM
-    BOT_KEY = '1432368134:AAGgRwPesrfBSPZge8hBK2RrcTHnZyuD33A'
-    ADMIN_ID = 403915236
-    TDV_CHAIN_ID = -1001280746539
+    BOT_KEY = ''
+    ADMIN_ID = 0
+    TDV_CHAIN_ID = -1
 
     # MECHANICS
     SENDER_SLEEP = 5
     ENGINE_FIRST = 60
     ENGINE_INTERVAL = 10800
 
+    # NewsOrgs :
+    NEWS_API_KEY = ''
+    NEWS_ORG = 'https://newsapi.org/v2/'
+    EVERYTHING = 'everything'
+    HEADLINE = 'headline'
+    TOP_HEADLINE = 'top-headlines'
+    SEQUENCES = [
+        {'q': 'space'},
+        {'country': 'fr', 'category': 'technology'},
+        {'country': 'fr', 'category': 'business'},
+        {'domains': 'techcrunch.com'}
+    ]
+
 
 class ConfigurationTest:
-    def __init__(self):
-        self.mode = 'test'
-
-    # NETWORK
-    DOMAINE = 'http://localhost:7111/tdv'
-
     # TELEGRAM
-    BOT_KEY = '1659088524:AAGf2bp963DKltRB2kythMJ68A1_M5bYwKI'  # VisionT1
-    ADMIN_ID = 403915236
-    TDV_CHAIN_ID = -1001292509023  # TheCosmosNews
+    BOT_KEY = ''
+    ADMIN_ID = 0  # your admin id from telegram
+    TDV_CHAIN_ID = 0  # chain id from telegram
 
     # MECHANICS
     SENDER_SLEEP = 1
-    ENGINE_FIRST = 3600
-    ENGINE_INTERVAL = 3600
+    ENGINE_FIRST = 5
+    ENGINE_INTERVAL = 600
+
+    # NewsOrgs :
+    NEWS_API_KEY = ''
+    NEWS_ORG = 'https://newsapi.org/v2/'
+    EVERYTHING = 'everything'
+    HEADLINE = 'headline'
+    TOP_HEADLINE = 'top-headlines'
+    SEQUENCES = [
+        {'q': 'bitcoin'},
+        {'country': 'fr', 'category': 'technology'},
+        {'country': 'fr', 'category': 'business'},
+        {'domains': 'techcrunch.com'}
+    ]
 
 
-CONFIG = ConfigurationTest()
+SETTINGS = ConfigurationTest()
