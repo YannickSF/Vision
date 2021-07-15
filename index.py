@@ -1,5 +1,5 @@
 
-from core.dialogs import VisionDialog, CONFIG
+from core.dialogs import VisionDialog, SETTINGS
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 
 
@@ -12,7 +12,7 @@ def callback_hour_vision(context: CallbackContext):
 
 def main():
     """Start the bot."""
-    updater = Updater(CONFIG.BOT_KEY, use_context=True)
+    updater = Updater(SETTINGS.BOT_KEY, use_context=True)
     # Get JobQueue to schedule watch()
     jb = updater.job_queue
     # Get the dispatcher to register handlers
@@ -21,6 +21,10 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", vision_corpus.start))
     dp.add_handler(CommandHandler("search", vision_corpus.search))
+    dp.add_handler(CommandHandler("create", vision_corpus.create_query))
+    dp.add_handler(CommandHandler("read", vision_corpus.read_query))
+    dp.add_handler(CommandHandler("delete", vision_corpus.delete_query))
+    dp.add_handler(CommandHandler("find", vision_corpus.find_by_query))
     dp.add_handler(MessageHandler(Filters.text, vision_corpus.answer))
 
     # job_hour = jb.run_repeating(callback_hour_vision, interval=CONFIG.ENGINE_INTERVAL, first=CONFIG.ENGINE_FIRST)

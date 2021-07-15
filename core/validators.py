@@ -1,9 +1,9 @@
 
-from settings import CONFIG
+from settings import SETTINGS
 
 
 def check_user(*args):
-    if args[0].effective_chat.id == CONFIG.ADMIN_ID:
+    if args[0].effective_chat.id == SETTINGS.ADMIN_ID:
         return True
     return False
 

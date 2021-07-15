@@ -82,11 +82,16 @@ class Result:
         if args is not None:
             if args != {}:
                 self.status = args['status']
-                self.totalResults = args['totalResults']
-                self.articles = []
+                if self.status == 'ok':
+                    self.totalResults = args['totalResults']
+                    self.articles = []
+                else:
+                    self.totalResults = 0
+                    self.articles = []
 
-        for art in args['articles']:
-            self.articles.append(Article(art))
+        if self.totalResults > 0:
+            for art in args['articles']:
+                self.articles.append(Article(art))
 
     def __repr__(self):
         return {'status': self.status, 'totalResult': self.totalResults, 'articles': self.articles}

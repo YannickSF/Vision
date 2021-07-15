@@ -1,9 +1,9 @@
 
 class Configuration:
     # TELEGRAM
-    BOT_KEY = '1794267120:AAGZ4OWaUTl5BtLCZl9Lqy7EjnCofirbaQ8'
-    ADMIN_ID = 403915236
-    TDV_CHAIN_ID = -1001280746539
+    BOT_KEY = ''
+    ADMIN_ID = 0
+    TDV_CHAIN_ID = -1
 
     # MECHANICS
     SENDER_SLEEP = 5
@@ -11,19 +11,24 @@ class Configuration:
     ENGINE_INTERVAL = 10800
 
     # NewsOrgs :
-    NEWS_API_KEY = '8f8d40fbcc36400b832e29f1e3ac67b0'
+    NEWS_API_KEY = ''
     NEWS_ORG = 'https://newsapi.org/v2/'
     EVERYTHING = 'everything'
     HEADLINE = 'headline'
     TOP_HEADLINE = 'top-headlines'
-    WORDS = []
+    SEQUENCES = [
+        {'q': 'space'},
+        {'country': 'fr', 'category': 'technology'},
+        {'country': 'fr', 'category': 'business'},
+        {'domains': 'techcrunch.com'}
+    ]
 
 
 class ConfigurationTest:
     # TELEGRAM
-    BOT_KEY = '1794267120:AAGZ4OWaUTl5BtLCZl9Lqy7EjnCofirbaQ8'
-    ADMIN_ID = 403915236
-    TDV_CHAIN_ID = 403915236
+    BOT_KEY = ''
+    ADMIN_ID = 0  # your admin id from telegram
+    TDV_CHAIN_ID = 0  # chain id from telegram
 
     # MECHANICS
     SENDER_SLEEP = 1
@@ -31,12 +36,17 @@ class ConfigurationTest:
     ENGINE_INTERVAL = 600
 
     # NewsOrgs :
-    NEWS_API_KEY = '8f8d40fbcc36400b832e29f1e3ac67b0'
+    NEWS_API_KEY = ''
     NEWS_ORG = 'https://newsapi.org/v2/'
     EVERYTHING = 'everything'
     HEADLINE = 'headline'
     TOP_HEADLINE = 'top-headlines'
-    WORDS = ['bitcoin', 'covid']
+    SEQUENCES = [
+        {'q': 'bitcoin'},
+        {'country': 'fr', 'category': 'technology'},
+        {'country': 'fr', 'category': 'business'},
+        {'domains': 'techcrunch.com'}
+    ]
 
 
-CONFIG = ConfigurationTest()
+SETTINGS = ConfigurationTest()
