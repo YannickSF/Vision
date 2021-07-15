@@ -1,13 +1,7 @@
 
 class Configuration:
-    def __init__(self):
-        self.mode = 'prod'
-
-    # NETWORK
-    DOMAINE = 'http://tdv.spacink.xyz/tdv'
-
     # TELEGRAM
-    BOT_KEY = '1432368134:AAGgRwPesrfBSPZge8hBK2RrcTHnZyuD33A'
+    BOT_KEY = '1794267120:AAGZ4OWaUTl5BtLCZl9Lqy7EjnCofirbaQ8'
     ADMIN_ID = 403915236
     TDV_CHAIN_ID = -1001280746539
 
@@ -16,23 +10,33 @@ class Configuration:
     ENGINE_FIRST = 60
     ENGINE_INTERVAL = 10800
 
+    # NewsOrgs :
+    NEWS_API_KEY = '8f8d40fbcc36400b832e29f1e3ac67b0'
+    NEWS_ORG = 'https://newsapi.org/v2/'
+    EVERYTHING = 'everything'
+    HEADLINE = 'headline'
+    TOP_HEADLINE = 'top-headlines'
+    WORDS = []
+
 
 class ConfigurationTest:
-    def __init__(self):
-        self.mode = 'test'
-
-    # NETWORK
-    DOMAINE = 'http://localhost:7111/tdv'
-
     # TELEGRAM
-    BOT_KEY = '1659088524:AAGf2bp963DKltRB2kythMJ68A1_M5bYwKI'  # VisionT1
+    BOT_KEY = '1794267120:AAGZ4OWaUTl5BtLCZl9Lqy7EjnCofirbaQ8'
     ADMIN_ID = 403915236
-    TDV_CHAIN_ID = -1001292509023  # TheCosmosNews
+    TDV_CHAIN_ID = 403915236
 
     # MECHANICS
     SENDER_SLEEP = 1
-    ENGINE_FIRST = 3600
-    ENGINE_INTERVAL = 3600
+    ENGINE_FIRST = 5
+    ENGINE_INTERVAL = 600
+
+    # NewsOrgs :
+    NEWS_API_KEY = '8f8d40fbcc36400b832e29f1e3ac67b0'
+    NEWS_ORG = 'https://newsapi.org/v2/'
+    EVERYTHING = 'everything'
+    HEADLINE = 'headline'
+    TOP_HEADLINE = 'top-headlines'
+    WORDS = ['bitcoin', 'covid']
 
 
 CONFIG = ConfigurationTest()
