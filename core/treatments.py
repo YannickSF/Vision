@@ -1,6 +1,7 @@
 
 from settings import SETTINGS
 from core.database import DATABASE
+from core.objects import Article
 from sources.newsorg import Newsorg
 
 import requests
@@ -9,14 +10,20 @@ newsorg_service = Newsorg(SETTINGS)
 
 
 def search():
-    newsorg_results = []
-    # News Org API Search
-    for sequence in SETTINGS.SEQUENCES:
-        query_args = newsorg_service.create_args(sequence)
-        newsorg_results += newsorg_service.query(SETTINGS.TOP_HEADLINE, query_args).articles
 
-    # todo : save articles :id/title/description/url: dans la database
-    return newsorg_results
+    def newsorg(args):
+        # News Org API Search
+        for sequence in SETTINGS.SEQUENCES:
+            query_args = newsorg_service.create_args(sequence)
+            args += newsorg_service.query(SETTINGS.TOP_HEADLINE, query_args).articles
+
+    results = []
+    newsorg(results)
+    # todo : analyses
+    for elem in results:
+        DATABASE.insert(Article(None, elem.title, elem.description, elem.url, None).__repr__())
+
+    return results
 
 
 def create_sequence(args):

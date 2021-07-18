@@ -1,7 +1,7 @@
 
 import requests
 from requests import RequestException
-from sources.objects import Result
+from sources.objects import NOResult
 
 
 class Newsorg:
@@ -70,7 +70,7 @@ class Newsorg:
                 url = self._config.NEWS_ORG + self._config.EVERYTHING + args + '&apiKey=' + self._config.NEWS_API_KEY
                 requete = requests.get(url)
                 page = requete.json()
-                return Result(page)
+                return NOResult(page)
             except RequestException:
                 return {}
 
@@ -79,7 +79,7 @@ class Newsorg:
                 url = self._config.NEWS_ORG + self._config.TOP_HEADLINE + args + '&apiKey=' + self._config.NEWS_API_KEY
                 requete = requests.get(url)
                 page = requete.json()
-                return Result(page)
+                return NOResult(page)
             except RequestException:
                 return {}
         return None

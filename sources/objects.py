@@ -2,7 +2,7 @@
 import uuid
 
 
-class Article:
+class NOArticle:
     def __init__(self, args):
         self.id = str(uuid.uuid4())
 
@@ -77,7 +77,7 @@ class Article:
         return self.__repr__().__str__()
 
 
-class Result:
+class NOResult:
     def __init__(self, args):
         if args is not None:
             if args != {}:
@@ -91,7 +91,7 @@ class Result:
 
         if self.totalResults > 0:
             for art in args['articles']:
-                self.articles.append(Article(art))
+                self.articles.append(NOArticle(art))
 
     def __repr__(self):
         return {'status': self.status, 'totalResult': self.totalResults, 'articles': self.articles}

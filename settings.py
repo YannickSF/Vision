@@ -27,8 +27,8 @@ class Configuration:
 class ConfigurationTest:
     # TELEGRAM
     BOT_KEY = ''
-    ADMIN_ID = 0  # your admin id from telegram
-    TDV_CHAIN_ID = 0  # chain id from telegram
+    ADMIN_ID = 0
+    TDV_CHAIN_ID = -1
 
     # MECHANICS
     SENDER_SLEEP = 1
